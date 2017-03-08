@@ -17,9 +17,10 @@ import java.util.Set;
  */
 public class MeetingImpl implements Meeting, Comparable, Serializable{
 
-    private int id;
-    private Calendar date;
-    private Set<Contact> contacts; /**
+    private final int id;
+    private final Calendar date;
+    private final Set<Contact> contacts;
+    /**
      * Creates a new meeting.
      * @param id the unique id of a meeting
      * @param date the date on which the meeting will take place
@@ -77,6 +78,13 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
         return contacts;
     }
 
+    /**
+     * Compares this object with the specified object for order. Returns a negative integer, zero, or a positive integer
+     * as this object is less than, equal to, or greater than the specified object.
+     * @param o the object to be compared
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the
+     * specified object.
+     */
     @Override
     public int compareTo(Object o) {
         Meeting c = (Meeting) o;
@@ -88,8 +96,5 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
         }
 
     }
-
-
-
 
 }

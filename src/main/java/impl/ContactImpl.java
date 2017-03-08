@@ -4,9 +4,6 @@ import spec.Contact;
 
 import java.io.Serializable;
 
-/**
- * Created by vasileiosdavios on 3/8/17.
- */
 
 /**
  * A contact is a person we are making business with or may do in the future.

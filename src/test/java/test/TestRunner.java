@@ -5,9 +5,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 
-/**
- * Created by vasileiosdavios on 3/8/17.
- */
+
 
 /**
  * TestRunner class, runs the tests for all the classes of the project

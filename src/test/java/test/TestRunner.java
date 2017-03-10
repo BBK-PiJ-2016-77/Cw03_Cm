@@ -14,7 +14,7 @@ import org.junit.runner.notification.Failure;
 public class TestRunner {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Result result = JUnitCore.runClasses(ContactImplTest.class);
 
@@ -34,5 +34,17 @@ public class TestRunner {
 
         System.out.println("MeetingImpl "+result.wasSuccessful());
         System.out.println();
+
+        result = JUnitCore.runClasses(ContactManagerImplTest.class);
+
+        for(Failure failure : result.getFailures()){
+
+            System.out.println(failure.toString());
+            System.out.println();
+        }
+
+        System.out.println("ContactManagerImpl "+result.wasSuccessful());
+        System.out.println();
     }
+
 }

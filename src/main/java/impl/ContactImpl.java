@@ -16,8 +16,8 @@ import java.io.Serializable;
 
 public class ContactImpl implements Contact, Comparable, Serializable {
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private String notes;
 
 
@@ -37,7 +37,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
 
     }
 
-    public ContactImpl(int id, String name) throws IllegalArgumentException, NullPointerException  {
+    public ContactImpl(int id, String name) throws IllegalArgumentException, NullPointerException {
         this(id, name, "");
     }
 
@@ -73,7 +73,13 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      * @param note the notes to be added
      */
     public void addNotes(String note) { notes = note; }
-
+    /**
+     * Compares this object with the specified object for order. Returns a negative integer, zero, or a positive integer
+     * as this object is less than, equal to, or greater than the specified object.
+     * @param o the object to be compared
+     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the
+     * specified object.
+     */
     @Override
     public int compareTo(Object o) {
         Contact c = (Contact)o;

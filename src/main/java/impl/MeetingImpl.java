@@ -91,7 +91,6 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
         if (id == c.getId() && date.compareTo(c.getDate()) == 0 && contacts.equals(c.getContacts()) == true) {
             return 0;
         } else {
-
             return -1;
         }
 

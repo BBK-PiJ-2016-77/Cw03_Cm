@@ -11,14 +11,31 @@ import java.io.Serializable;
  *
  * It includes your notes about what happened and what was agreed.
  */
-public class PastMeetingImpl extends MeetingImpl implements PastMeeting, Serializable {
-    private String notes ;
-    public PastMeetingImpl(int id, Calendar date, Set<Contact> contacts, String notes)throws IllegalArgumentException, NullPointerException {
+public class PastMeetingImpl extends MeetingImpl implements
+    PastMeeting, Serializable {
+    /**
+     * The notes of the past meeting.
+     */
+    private String meetingNotes;
+
+    /**
+     *
+     * @param id the unique id of the meeting
+     * @param date of the meeting
+     * @param contacts of meeting
+     * @param notes of meeting
+     * @throws IllegalArgumentException if the contacts are empty
+     * @throws NullPointerException if any of the references/pointers
+     * passed as parameters is null
+     */
+    public PastMeetingImpl(final int id, final Calendar date,
+                           final Set<Contact> contacts, final String notes)
+        throws IllegalArgumentException, NullPointerException {
         super(id, date, contacts);
-        if(notes == null) {
+        if (notes == null) {
             throw new NullPointerException("empty notes");
         }
-        this.notes = notes;
+        meetingNotes = notes;
 
     }
 
@@ -29,9 +46,9 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting, Seriali
      *
      * @return the notes from the meeting.
      */
-    public String getNotes() {
+    public final String getNotes() {
 
-        return notes;
+        return meetingNotes;
 
     }
 }

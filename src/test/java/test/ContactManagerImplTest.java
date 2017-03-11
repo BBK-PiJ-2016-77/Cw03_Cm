@@ -11,9 +11,6 @@ import spec.*;
 import java.io.File;
 import java.util.*;
 
-/**
- * Created by vasileiosdavios on 3/9/17.
- */
 public class ContactManagerImplTest {
     private ContactManager contactManager;
 
@@ -49,9 +46,10 @@ public class ContactManagerImplTest {
     }
 
     /**
-    It is expected that the method will fail with a NullpointerException
+    It is expected that the method will fail with a Null pointer Exception
     If it doesnt fail we consider the test a failure.
-    If it does fail but with a diferent type of exception we consider the test a failure.
+    If it does fail but with a diferent type of exception
+     we consider the test a failure.
     */
     @Test
     public void addNewContactTestFailure() {
@@ -70,7 +68,8 @@ public class ContactManagerImplTest {
     @Test
     public void addNewContactReturnValueTestSuccess() {
         try {
-            int x = contactManager.addNewContact("Vasilis", "2nd Contact");
+            int x = contactManager.addNewContact
+                    ("Vasilis", "2nd Contact");
             assertEquals(2,x);
         } catch (IllegalArgumentException | NullPointerException e){
             fail();
@@ -80,7 +79,8 @@ public class ContactManagerImplTest {
     @Test
     public void getContactSizeTestSuccess() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             assertEquals(1,contactManagerSet.size());
         } catch (NullPointerException e){
             fail();
@@ -91,7 +91,8 @@ public class ContactManagerImplTest {
         Set<Contact> testSet = new TreeSet<>();
         testSet.add(new ContactImpl(1,"Maria","1st Contact"));
         try {
-           Set<Contact> contactManagerSet = contactManager.getContacts("");
+           Set<Contact> contactManagerSet =
+                   contactManager.getContacts("");
             Iterator<Contact> iterate = contactManagerSet.iterator();
             while(iterate.hasNext()) {
                 ContactImpl contact = (ContactImpl)iterate.next();
@@ -115,7 +116,8 @@ public class ContactManagerImplTest {
     @Test
     public void getContactsValueTestSuccess() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             Object[] contactManagerArray = contactManagerSet.toArray();
             Contact contact = (Contact)contactManagerArray[0];
             assertEquals(contact.getName(),"Maria");
@@ -127,12 +129,14 @@ public class ContactManagerImplTest {
     /**
      It is expected that the method will be successful.
      The assertion will return true.
-     If the method return false or throw a NullPointerException we consider the test a failure.
+     If the method return false or throw a NullPointerException
+     we consider the test a failure.
      */
     @Test
     public void getContactsValueTestFailure() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             Object[] contactManagerArray = contactManagerSet.toArray();
             Contact contact = (Contact)contactManagerArray[0];
             assertFalse(contact.getName().equals(""));
@@ -145,7 +149,8 @@ public class ContactManagerImplTest {
     public void getContactsNullNameTestFailure() {
 
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts((String)null);
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts((String)null);
             fail();
         }catch (NullPointerException e) {
 
@@ -154,8 +159,10 @@ public class ContactManagerImplTest {
     @Test
     public void getContactsArbitraryIdsValueTestSuccess() {
         try {
-            int i = contactManager.addNewContact("Kwstantinos", "2nd Contact");
-            Set<Contact> contactManagerSet = contactManager.getContacts(1,i);
+            int i = contactManager.addNewContact("Kwstantinos",
+                    "2nd Contact");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts(1,i);
             int[] contactIds = new int[contactManagerSet.size()];
             int j = 0;
             for(Contact contact : contactManagerSet){
@@ -184,8 +191,10 @@ public class ContactManagerImplTest {
     @Test
     public void addNewPastMeetingTestSuccess() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
-            contactManager.addNewPastMeeting(contactManagerSet, Calendar.getInstance(), "meeting notes");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
+            contactManager.addNewPastMeeting(contactManagerSet,
+                    Calendar.getInstance(), "meeting notes");
         } catch (NullPointerException | IllegalArgumentException e) {
             fail();
         }
@@ -194,7 +203,8 @@ public class ContactManagerImplTest {
     public void addNewPastMeetingEmptySetTestFailure() {
         try{
             Set<Contact> contactManagerSet = new TreeSet<>();
-            contactManager.addNewPastMeeting(contactManagerSet, Calendar.getInstance(), "meeting notes");
+            contactManager.addNewPastMeeting(contactManagerSet,
+                    Calendar.getInstance(), "meeting notes");
         } catch (NullPointerException e) {
             fail();
         } catch (IllegalArgumentException e) {
@@ -206,7 +216,8 @@ public class ContactManagerImplTest {
     @Test
     public void addNewPastMeetingNullContactsTestFailure() {
         try {
-            contactManager.addNewPastMeeting(null,Calendar.getInstance(),"meeting notes");
+            contactManager.addNewPastMeeting(null,
+                    Calendar.getInstance(),"meeting notes");
             fail();
         } catch (NullPointerException e) {
 
@@ -218,9 +229,11 @@ public class ContactManagerImplTest {
     public void addNewPastMeetingUnknownContactTestFailure() {
         try {
             Set<Contact> contactManagerSet = new TreeSet<>();
-            Contact contact = new ContactImpl(1, "Whatever", "Whatever");
+            Contact contact = new ContactImpl(1,
+                    "Whatever", "Whatever");
             contactManagerSet.add(contact);
-            contactManager.addNewPastMeeting(contactManagerSet, Calendar.getInstance(), "meeting notes");
+            contactManager.addNewPastMeeting(contactManagerSet,
+                    Calendar.getInstance(), "meeting notes");
             fail();
         } catch (NullPointerException e) {
             fail();
@@ -233,7 +246,8 @@ public class ContactManagerImplTest {
     @Test
     public void addFutureMeetingTestSuccess() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             Calendar date = Calendar.getInstance();
             //Add 5 day  to the current date
             date.add(Calendar.DATE, 5 );
@@ -247,7 +261,8 @@ public class ContactManagerImplTest {
     public void addFutureMeetingUnknownContactTestFailure() {
         try {
             Set<Contact> contactManagerSet = new TreeSet<>();
-            Contact contact = new ContactImpl(1, "Whatever", "Whatever");
+            Contact contact = new ContactImpl(1, "Whatever",
+                    "Whatever");
             contactManagerSet.add(contact);
             //Add 5 day  to the current date
             Calendar date = Calendar.getInstance();
@@ -263,7 +278,8 @@ public class ContactManagerImplTest {
     @Test
     public void addFutureMeetingWrongDateFailure() {
         try {
-            Set<Contact> contactManagerSet=contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             Calendar date = Calendar.getInstance();
             // travels back in time
             date.add(Calendar.DAY_OF_MONTH, -5);
@@ -307,7 +323,8 @@ public class ContactManagerImplTest {
     @Test
     public void addFutureMeetingNullDateTestFailure() {
         try {
-            Set<Contact> contactManagerSet=contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
 
             contactManager.addFutureMeeting(contactManagerSet,null);
 
@@ -323,8 +340,10 @@ public class ContactManagerImplTest {
     @Test
     public void getPastMeetingTestSuccess() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
-            int id = contactManager.addNewPastMeeting(contactManagerSet,Calendar.getInstance(),"meeting notes");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
+            int id = contactManager.addNewPastMeeting(contactManagerSet,
+                    Calendar.getInstance(),"meeting notes");
             Meeting meeting = contactManager.getPastMeeting(id);
         } catch (NullPointerException | IllegalStateException e) {
             //addNewPastMeeting exceptions
@@ -336,7 +355,8 @@ public class ContactManagerImplTest {
     @Test
     public void getPastMeetingWrongIdTestFailure() {
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
             Calendar date = Calendar.getInstance();
             // adds 5 days to the current date
             date.add(Calendar.DATE, 5);
@@ -354,8 +374,10 @@ public class ContactManagerImplTest {
     public void getFutureMeetingWrongIdTestFailure() {
 
         try {
-            Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
-            int id = contactManager.addNewPastMeeting(contactManagerSet,Calendar.getInstance(),"meeting notes");
+            Set<Contact> contactManagerSet =
+                    contactManager.getContacts("Maria");
+            int id = contactManager.addNewPastMeeting(contactManagerSet,
+                    Calendar.getInstance(),"meeting notes");
             Meeting meeting = contactManager.getFutureMeeting(id);
             fail();
         } catch (NullPointerException | IllegalArgumentException e) {
@@ -370,8 +392,10 @@ public class ContactManagerImplTest {
     @Test
     public void getMeetingTestSuccess() {
 
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
-        int id = contactManager.addNewPastMeeting(contactManagerSet,Calendar.getInstance(),"meeting notes");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
+        int id = contactManager.addNewPastMeeting(contactManagerSet,
+                Calendar.getInstance(),"meeting notes");
         Meeting meeting = contactManager.getMeeting(id);
         assertEquals(id,meeting.getId());
 
@@ -379,15 +403,18 @@ public class ContactManagerImplTest {
     @Test
     public void getMeetingTestForNullSuccess() {
 
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
-        int id = contactManager.addNewPastMeeting(contactManagerSet,Calendar.getInstance(),"meeting notes");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
+        int id = contactManager.addNewPastMeeting(contactManagerSet,
+                Calendar.getInstance(),"meeting notes");
         Meeting meeting = contactManager.getMeeting(100);
         assertNull(meeting);
 
     }
     @Test
     public void getFutureMeetingListTestSuccess() {
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
         Contact maria = (Contact)contactManagerSet.toArray()[0];
         Calendar date = Calendar.getInstance();
         // adds 5 days to the current date
@@ -396,7 +423,8 @@ public class ContactManagerImplTest {
         FutureMeeting[] futureMeetings = new FutureMeeting[1];
         futureMeetings[0] = contactManager.getFutureMeeting(id);
         try {
-            List<Meeting> meetingList = contactManager.getFutureMeetingList(maria);
+            List<Meeting> meetingList =
+                    contactManager.getFutureMeetingList(maria);
             Object[] futureMeetings2 = meetingList.toArray();
             assertArrayEquals(futureMeetings,futureMeetings2);
         } catch (IllegalArgumentException | NullPointerException e) {
@@ -406,10 +434,12 @@ public class ContactManagerImplTest {
     }
     @Test
     public void getFutureMeetingListEmptyTestSuccess() {
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
         Contact maria = (Contact)contactManagerSet.toArray()[0];
         try {
-            List<Meeting> meetingList = contactManager.getFutureMeetingList(maria);
+            List<Meeting> meetingList =
+                    contactManager.getFutureMeetingList(maria);
             assertTrue(meetingList.isEmpty());
         } catch (IllegalArgumentException | NullPointerException e) {
             fail();
@@ -430,7 +460,8 @@ public class ContactManagerImplTest {
     @Test
     public void getFutureMeetingListNullContactTestFailure() {
         try {
-            List<Meeting> meetingList = contactManager.getFutureMeetingList(null);
+            List<Meeting> meetingList =
+                    contactManager.getFutureMeetingList(null);
             fail();
         } catch (IllegalArgumentException e) {
             fail();
@@ -473,7 +504,8 @@ public class ContactManagerImplTest {
         //adds 5 days to the current date
         date.add(Calendar.DATE,10);
         try{
-            List<Meeting> meetingList = contactManager.getMeetingListOn(date);
+            List<Meeting> meetingList =
+                    contactManager.getMeetingListOn(date);
             // the list should be empty
             assertTrue(meetingList.isEmpty());
         } catch (NullPointerException e) {
@@ -482,7 +514,8 @@ public class ContactManagerImplTest {
     }
     @Test
     public void getMeetingListOnTestForDuplicatesSuccess() {
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
         Calendar date = Calendar.getInstance();
         Calendar date1 = Calendar.getInstance();
         //adds 5 days to the current date
@@ -506,7 +539,8 @@ public class ContactManagerImplTest {
     }
     @Test
     public void getMeetingListOnTestFailure() {
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
         Calendar date1 = Calendar.getInstance();
         Calendar date2 = Calendar.getInstance();
         Calendar date3 = Calendar.getInstance();
@@ -528,8 +562,10 @@ public class ContactManagerImplTest {
             Object[] futureMeetings2 =  meetingList.toArray();
 
             assertEquals(futureMeetings.length,futureMeetings2.length);
-            //Check if the list is sorted - our dummy list its not sorted so the assertion should fail.
-            //If the assertion fail then we know that the list we get from getMeetingListOn() is sorted.
+            //Check if the list is sorted - our dummy list its not sorted
+            // so the assertion should fail.
+            //If the assertion fail then we know that the list we get
+            // from getMeetingListOn() is sorted.
             boolean found = false;
             int i = 0;
 
@@ -550,21 +586,25 @@ public class ContactManagerImplTest {
     }
     @Test
     public void getPastMeetingListForTestSuccess() {
-        Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
+        Set<Contact> contactManagerSet =
+                contactManager.getContacts("Maria");
         Contact contact = (Contact)(contactManagerSet.toArray()[0]);
         Calendar date = Calendar.getInstance();
         //5 days past from this meeting
         date.add(Calendar.DATE, -5);
-        int id = contactManager.addNewPastMeeting(contactManagerSet,date,"meeting notes");
+        int id = contactManager
+                .addNewPastMeeting(contactManagerSet, date,"meeting notes");
         PastMeeting[] pastMeetings = new PastMeeting[2];
         pastMeetings[0] = contactManager.getPastMeeting(id);
         Calendar date1 = Calendar.getInstance();
         //7 days past from this meeting
         date1.add(Calendar.DATE, - 7);
-        id = contactManager.addNewPastMeeting(contactManagerSet,date,"meeting notes");
+        id = contactManager
+                .addNewPastMeeting(contactManagerSet, date,"meeting notes");
         pastMeetings[1]= contactManager.getPastMeeting(id);
         try {
-            List<PastMeeting> meetingList = contactManager.getPastMeetingListFor(contact);
+            List<PastMeeting> meetingList = contactManager
+                    .getPastMeetingListFor(contact);
             Object[] arrayOfMeetings = meetingList.toArray();
             assertEquals(arrayOfMeetings.length, pastMeetings.length);
             assertArrayEquals(arrayOfMeetings,pastMeetings);
@@ -575,7 +615,8 @@ public class ContactManagerImplTest {
     @Test
     public void getPastMeetingListForNullTestFailure() {
         try {
-            List<PastMeeting> meetingList = contactManager.getPastMeetingListFor(null);
+            List<PastMeeting> meetingList = contactManager
+                    .getPastMeetingListFor(null);
             fail();
         } catch (IllegalArgumentException e) {
             fail();
@@ -592,7 +633,8 @@ public class ContactManagerImplTest {
         Set<Contact> contactManagerSet = new TreeSet<>();
         contactManagerSet.add(contact);
         try {
-            List<PastMeeting> meetingList = contactManager.getPastMeetingListFor(contact);
+            List<PastMeeting> meetingList = contactManager
+                    .getPastMeetingListFor(contact);
             fail();
         } catch (IllegalArgumentException e) {
 
@@ -603,7 +645,8 @@ public class ContactManagerImplTest {
     @Test
     public void addMeetingNotesIllegalArgumentTestFailure() {
         try {
-            PastMeeting ourMeeting = contactManager.addMeetingNotes(10,"done");
+            PastMeeting ourMeeting = contactManager
+                    .addMeetingNotes(10,"done");
             fail();
         } catch (IllegalArgumentException ex) {
 
@@ -618,7 +661,8 @@ public class ContactManagerImplTest {
         date.add(Calendar.DATE, 3);
         int id = contactManager.addFutureMeeting(contacts,date);
         try {
-            PastMeeting ourMeeting = contactManager.addMeetingNotes(id,"done");
+            PastMeeting ourMeeting = contactManager
+                    .addMeetingNotes(id,"done");
             fail();
         } catch (IllegalArgumentException | NullPointerException ex) {
             fail();
@@ -633,7 +677,8 @@ public class ContactManagerImplTest {
         date.add(Calendar.DATE, 3);
         int id = contactManager.addFutureMeeting(contacts,date);
         try {
-            PastMeeting ourMeeting = contactManager.addMeetingNotes(id,null);
+            PastMeeting ourMeeting = contactManager
+                    .addMeetingNotes(id,null);
             fail();
         } catch (IllegalArgumentException | IllegalStateException ex) {
             fail();
@@ -646,14 +691,16 @@ public class ContactManagerImplTest {
         Set<Contact> contacts = contactManager.getContacts("Maria");
         Calendar date = Calendar.getInstance();
         int meetingId = contactManager.addFutureMeeting(contacts,date);
-        //Sleep main thread for 1sec so we can make the futureMeeting pastMeeting.
+        //Sleep main thread for 1sec so
+        //we can make the futureMeeting pastMeeting.
         try{
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            PastMeeting ourMeeting = contactManager.addMeetingNotes(meetingId, "notes");
+            PastMeeting ourMeeting = contactManager
+                    .addMeetingNotes(meetingId, "notes");
             assertEquals(ourMeeting.getNotes(), "notes");
         } catch (IllegalArgumentException | IllegalStateException ex) {
             fail();
@@ -666,7 +713,8 @@ public class ContactManagerImplTest {
         contactManager.addFutureMeeting(contacts, date);
         contactManager.flush();
         ContactManager testFlushContactManager = new ContactManagerImpl();
-        Set<Contact> afterFlushContacts = testFlushContactManager.getContacts(1);
+        Set<Contact> afterFlushContacts =
+                testFlushContactManager.getContacts(1);
         List<Meeting> meetings = testFlushContactManager.getMeetingListOn(date);
         Object [] arrayOfContacts = afterFlushContacts.toArray();
         Contact contact = (Contact)arrayOfContacts[0];

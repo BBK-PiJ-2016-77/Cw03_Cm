@@ -6,6 +6,7 @@ import spec.Meeting;
 import spec.PastMeeting;
 import spec.ContactManager;
 
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +24,11 @@ import java.util.Iterator;
 import java.time.LocalDateTime;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+
 
 
 /**
@@ -30,6 +36,11 @@ import java.time.ZoneId;
  */
 
 public class ContactManagerImpl implements ContactManager, Serializable {
+  /**
+   * Creating a logger to log the errors.
+   */
+  private static Logger logger = Logger
+      .getLogger(ContactManagerImpl.class.getName());
     /**
      * A set of contacts.
      */
@@ -50,6 +61,11 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * The File our contact manager is saved.
      */
     public static final String FILE = "Contact_manager";
+    /**
+     * A version number which is used during deserialization to verify that the
+     * sender and receiver of a serialized object have loaded classes for that
+     * are compatible with respect to serialization.
+     */
     private static final long serialVersionUID = 507553869890625432L;
 
     /**
@@ -72,14 +88,14 @@ public class ContactManagerImpl implements ContactManager, Serializable {
             }
         } catch (IOException | SecurityException
                 | NullPointerException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "ContactManagerImpl_Constructor", e);
         } finally {
             try {
                 if (input != null) {
                     input.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+              logger.log(Level.SEVERE, "ContactManagerImpl_Constructor", e);
             }
         }
     }
@@ -96,7 +112,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      *       in the past, of if any contact is unknown / non-existent.
      * @throws NullPointerException if the meeting or the date are null
      */
-    public int addFutureMeeting(final Set<Contact> contacts,
+    public final int addFutureMeeting(final Set<Contact> contacts,
                                 final Calendar date) throws
             IllegalArgumentException, NullPointerException {
         if (contacts == null || date == null) {
@@ -128,7 +144,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @throws IllegalStateException if there is a meeting with
      * that ID happening in the future
      */
-    public PastMeeting getPastMeeting(final int id)
+    public final PastMeeting getPastMeeting(final int id)
             throws IllegalStateException {
         Meeting meeting = searchForMeeting(id);
         if (meeting == null) {
@@ -148,7 +164,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @throws IllegalStateException if there is a meeting with that ID
      * happening in the past
      */
-    public FutureMeeting getFutureMeeting(final int id)
+    public final FutureMeeting getFutureMeeting(final int id)
             throws IllegalStateException {
         Meeting meeting = searchForMeeting(id);
         if (meeting == null) {
@@ -165,7 +181,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
      */
-    public Meeting getMeeting(final int id) {
+    public final Meeting getMeeting(final int id) {
         Meeting meeting = searchForMeeting(id);
         if (meeting == null) {
             return null;
@@ -204,7 +220,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @throws IllegalArgumentException if the contact does not exist
      * @throws NullPointerException if the contact is null
      */
-    public List<Meeting> getFutureMeetingList(final Contact contact)
+    public final List<Meeting> getFutureMeetingList(final Contact contact)
             throws IllegalArgumentException, NullPointerException {
         if (contact == null) {
             throw new NullPointerException("Null contact");
@@ -257,7 +273,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @return the list of meetings
      * @throws NullPointerException if the date are null
      */
-    public List<Meeting> getMeetingListOn(final Calendar date)
+    public final List<Meeting> getMeetingListOn(final Calendar date)
             throws NullPointerException {
         if (date == null) {
             throw new NullPointerException("Give me a date");
@@ -335,7 +351,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @throws IllegalArgumentException if the contact does not exist
      * @throws NullPointerException if the contact is null
      */
-    public List<PastMeeting> getPastMeetingListFor(final Contact contact)
+    public final List<PastMeeting> getPastMeetingListFor(final Contact contact)
             throws IllegalArgumentException, NullPointerException {
         if (contact == null) {
             throw new NullPointerException("Empty input");
@@ -375,7 +391,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * the date provided is in the future
      * @throws NullPointerException if any of the arguments is null
      */
-    public int addNewPastMeeting(final Set<Contact> contacts,
+    public final int addNewPastMeeting(final Set<Contact> contacts,
                                  final Calendar date,
                                  final String text)
             throws IllegalArgumentException, NullPointerException {
@@ -415,7 +431,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * future
      * @throws NullPointerException if the notes are null
      */
-    public PastMeeting addMeetingNotes(final int id, final String text)
+    public final PastMeeting addMeetingNotes(final int id, final String text)
             throws IllegalArgumentException,
             IllegalStateException, NullPointerException {
         if (text == null) {
@@ -463,14 +479,14 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * empty strings
      * @throws NullPointerException if the name or the notes are null
      */
-    public int addNewContact(final String name, final String notes)
+    public final int addNewContact(final String name, final String notes)
             throws IllegalArgumentException,
             NullPointerException {
-        if (name.equals("") || notes.equals("")) {
-            throw new IllegalArgumentException();
-        }
         if (name == null || notes == null) {
             throw new NullPointerException();
+        }
+        if (name.equals("") || notes.equals("")) {
+            throw new IllegalArgumentException();
         }
         Contact contact = new ContactImpl(contactId.nextValue(), name, notes);
         setOfContacts.add(contact);
@@ -486,7 +502,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @return a set with the contacts whose name contains that string.
      * @throws NullPointerException if the parameter is null
      */
-    public Set<Contact> getContacts(final String name)
+    public final Set<Contact> getContacts(final String name)
             throws NullPointerException {
         if (name == null) {
             throw new NullPointerException();
@@ -513,7 +529,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * @throws IllegalArgumentException if no IDs are provided or if
      *     any of the provided IDs does not correspond to a real contact
      */
-    public Set<Contact> getContacts(final int... ids)
+    public final Set<Contact> getContacts(final int... ids)
             throws IllegalArgumentException {
         if (ids.length == 0) {
             throw new IllegalArgumentException();
@@ -542,7 +558,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
      * This method must be executed when the program is
      * closed and when/if the user requests it.
      */
-    public void flush() {
+    public final void flush() {
         ObjectOutputStream output = null;
         try {
             output = new ObjectOutputStream(new FileOutputStream(FILE));
@@ -553,16 +569,16 @@ public class ContactManagerImpl implements ContactManager, Serializable {
         } catch (FileNotFoundException
                 | SecurityException
                 | NullPointerException  e) {
-            e.printStackTrace();
+          logger.log(Level.SEVERE, "flush", e);
         } catch (IOException e) {
-            e.printStackTrace();
+          logger.log(Level.SEVERE, "flush", e);
         } finally {
             try {
                 if (output != null) {
                     output.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+              logger.log(Level.SEVERE, "flush", e);
             }
         }
     }

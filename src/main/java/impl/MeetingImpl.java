@@ -59,7 +59,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
      *
      * @return the id of the meeting.
      */
-    public int getId() {
+    public final int getId() {
 
         return meetingId;
     }
@@ -69,7 +69,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
      *
      * @return the date of the meeting.
      */
-    public Calendar getDate() {
+    public final Calendar getDate() {
 
         return meetingDate;
     }
@@ -83,7 +83,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
      *
      * @return the details of people that attended the meeting.
      */
-    public Set<Contact> getContacts() {
+    public final Set<Contact> getContacts() {
 
         return contactsOfMeeting;
     }
@@ -99,11 +99,11 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
      * specified object.
      */
     @Override
-    public int compareTo(final Object o) {
+    public final int compareTo(final Object o) {
         Meeting c = (Meeting) o;
         if (meetingId == c.getId() && meetingDate.compareTo(c.getDate())
                 == 0
-                && contactsOfMeeting.equals(c.getContacts()) == true) {
+                && contactsOfMeeting.equals(c.getContacts())) {
             return 0;
         } else {
             return -1;

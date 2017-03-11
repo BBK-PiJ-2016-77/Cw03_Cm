@@ -46,9 +46,9 @@ public class ContactImpl implements Contact, Comparable, Serializable {
             throw new NullPointerException();
         }
 
-        this.contactId = id;
-        this.contactName = name;
-        this.contactNotes = notes;
+        contactId = id;
+        contactName = name;
+        contactNotes = notes;
 
 
     }
@@ -70,7 +70,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      *
      * @return the ID of the contact.
      */
-    public int getId() {
+    public final int getId() {
         return  contactId;
     }
 
@@ -79,7 +79,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      *
      * @return the name of the contact.
      */
-    public String getName() {
+    public final String getName() {
         return  contactName; }
 
     /**
@@ -90,7 +90,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      *
      * @return a string with notes about the contact, maybe empty.
      */
-    public String getNotes() {
+    public final String getNotes() {
         return contactNotes; }
 
     /**
@@ -98,7 +98,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      *
      * @param note the notes to be added
      */
-    public void addNotes(final String note) {
+    public final void addNotes(final String note) {
         contactNotes = note; }
     /** Compares this object with the specified object for order.
      * Returns a negative integer, zero, or
@@ -110,7 +110,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
      * specified object.
      */
     @Override
-    public int compareTo(final Object o) {
+    public final int compareTo(final Object o) {
         Contact c = (Contact) o;
         if (contactId == c.getId() && contactName.compareTo(c.getName()) == 0
                 && contactNotes.compareTo(c.getNotes()) == 0) {

@@ -1,6 +1,7 @@
 package spec;
 
 
+
 /**
  * A meeting that was held in the past.
  *
@@ -15,4 +16,5 @@ public interface PastMeeting extends Meeting {
      * @return the notes from the meeting.
      */
     String getNotes();
+
 }

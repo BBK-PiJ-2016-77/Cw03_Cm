@@ -1,12 +1,9 @@
 package spec;
 
-/**
- * Created by vasileiosdavios on 3/8/17.
- */
 import java.util.Calendar;
 import java.util.Set;
 /**
- * A class to represent meetings
+ * A class to represent meetings.
  *
  * Meetings have unique IDs, scheduled date and a list of participating contacts
  */

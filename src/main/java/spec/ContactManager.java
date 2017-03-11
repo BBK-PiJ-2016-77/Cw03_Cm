@@ -24,24 +24,27 @@ public interface ContactManager {
     int addFutureMeeting(Set<Contact> contacts, Calendar date);
 
     /**
-     * Returns the PAST meeting with the requested ID, or null if it there is none.
+     * Returns the PAST meeting with the requested ID, or null if it there
+     * is none.
      *
      * The meeting must have happened at a past date.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
-     * @throws IllegalStateException if there is a meeting with that ID happening
+     * @throws IllegalStateException if there is a meeting with that ID
+     * happening
      *         in the future
      */
     PastMeeting getPastMeeting(int id);
 
     /**
-     * Returns the FUTURE meeting with the requested ID, or null if there is none.
+     * Returns the FUTURE meeting with the requested ID, or null if there is
+     * none.
      *
      * @param id the ID for the meeting
      * @return the meeting with the requested ID, or null if it there is none.
-     * @throws IllegalStateException if there is a meeting with that ID happening
-     *         in the past
+     * @throws IllegalStateException if there is a meeting with that ID
+     * happening in the past
      */
     FutureMeeting getFutureMeeting(int id);
 
@@ -61,7 +64,8 @@ public interface ContactManager {
      * duplicates.
      *
      * @param contact one of the user’s contacts
-     * @return the list of future meeting(s) scheduled with this contact (maybe empty).
+     * @return the list of future meeting(s) scheduled with this contact
+     * (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
      * @throws NullPointerException if the contact is null
      */
@@ -89,7 +93,8 @@ public interface ContactManager {
      * duplicates.
      *
      * @param contact one of the user’s contacts
-     * @return the list of future meeting(s) scheduled with this contact (maybe empty).
+     * @return the list of future meeting(s) scheduled with this contact
+     * (maybe empty).
      * @throws IllegalArgumentException if the contact does not exist
      * @throws NullPointerException if the contact is null
      */
@@ -119,8 +124,10 @@ public interface ContactManager {
      *
      * @param id the ID of the meeting
      * @param text messages to be added about the meeting.
+     * @return the meeting with the notes added
      * @throws IllegalArgumentException if the meeting does not exist
-     * @throws IllegalStateException if the meeting is set for a date in the future
+     * @throws IllegalStateException if the meeting is set for a date
+     * in the future
      * @throws NullPointerException if the notes are null
      */
     PastMeeting addMeetingNotes(int id, String text);
@@ -131,7 +138,8 @@ public interface ContactManager {
      * @param name the name of the contact.
      * @param notes notes to be added about the contact.
      * @return the ID for the new contact
-     * @throws IllegalArgumentException if the name or the notes are empty strings
+     * @throws IllegalArgumentException if the name or the notes are
+     * empty strings
      * @throws NullPointerException if the name or the notes are null
      */
     int addNewContact(String name, String notes);
@@ -150,8 +158,8 @@ public interface ContactManager {
 
     /**
      * Returns a set containing the contacts that correspond to the IDs.
-     * Note that this method can be used to retrieve just one contact by passing only one ID.
-     *
+     * Note that this method can be used to retrieve just one contact by
+     * passing only one ID.
      * @param ids an arbitrary number of contact IDs
      * @return a set containing the contacts that correspond to the IDs.
      * @throws IllegalArgumentException if no IDs are provided or if

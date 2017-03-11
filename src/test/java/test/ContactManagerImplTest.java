@@ -9,10 +9,7 @@ import org.junit.Test;
 import spec.*;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by vasileiosdavios on 3/9/17.
@@ -89,6 +86,31 @@ public class ContactManagerImplTest {
             fail();
         }
     }
+    @Test
+    public void getContactEmptyStringSuccess() {
+        Set<Contact> testSet = new TreeSet<>();
+        testSet.add(new ContactImpl(1,"Maria","1st Contact"));
+        try {
+           Set<Contact> contactManagerSet = contactManager.getContacts("");
+            Iterator<Contact> iterate = contactManagerSet.iterator();
+            while(iterate.hasNext()) {
+                ContactImpl contact = (ContactImpl)iterate.next();
+                Iterator<Contact> iterator = testSet.iterator();
+                boolean found = false;
+                while(iterator.hasNext() && !found){
+                    ContactImpl contactTest =(ContactImpl)iterator.next();
+                    if(contact.compareTo(contactTest) == 0){
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    fail();
+                }
+            }
+        }catch (NullPointerException e) {
+            fail();
+        }
+    }
 
     @Test
     public void getContactsValueTestSuccess() {
@@ -140,7 +162,6 @@ public class ContactManagerImplTest {
                 contactIds[j++] = contact.getId();
             }
             assertEquals(contactIds.length, 2);
-            //
             boolean ok = contactIds[0] == 1 || contactIds[0] == 2;
             ok = ok && (contactIds[1] == 1 || contactIds[1] == 2);
             assertTrue(ok);
@@ -248,7 +269,6 @@ public class ContactManagerImplTest {
             date.add(Calendar.DAY_OF_MONTH, -5);
             contactManager.addFutureMeeting(contactManagerSet,date);
             fail();
-
         } catch (NullPointerException e) {
             fail();
         } catch (IllegalArgumentException e) {
@@ -306,7 +326,6 @@ public class ContactManagerImplTest {
             Set<Contact> contactManagerSet = contactManager.getContacts("Maria");
             int id = contactManager.addNewPastMeeting(contactManagerSet,Calendar.getInstance(),"meeting notes");
             Meeting meeting = contactManager.getPastMeeting(id);
-            assertTrue(meeting instanceof PastMeeting);
         } catch (NullPointerException | IllegalStateException e) {
             //addNewPastMeeting exceptions
             fail();
@@ -506,10 +525,14 @@ public class ContactManagerImplTest {
         contactManager.addFutureMeeting(contactManagerSet,date3);
         try{
             List<Meeting> meetingList = contactManager.getMeetingListOn(date1);
-            Object[] futureMeetings2 = meetingList.toArray();
+            Object[] futureMeetings2 =  meetingList.toArray();
+
             assertEquals(futureMeetings.length,futureMeetings2.length);
+            //Check if the list is sorted - our dummy list its not sorted so the assertion should fail.
+            //If the assertion fail then we know that the list we get from getMeetingListOn() is sorted.
             boolean found = false;
             int i = 0;
+
             while(!found) {
                 if(futureMeetings2[i]!= futureMeetings[i]) {
                     found=true;
@@ -517,7 +540,8 @@ public class ContactManagerImplTest {
                     i++;
                 }
             }
-            if(!found) {
+
+            if (!found) {
                 fail();
             }
         } catch (NullPointerException e) {

@@ -15,11 +15,19 @@ import java.util.Set;
  *
  * Meetings have unique IDs, scheduled date and a list of participating contacts
  */
-public class MeetingImpl implements Meeting, Comparable, Serializable{
-
-    private final int id;
-    private final Calendar date;
-    private final Set<Contact> contacts;
+public class MeetingImpl implements Meeting, Comparable, Serializable {
+    /**
+     * The ID of the meeting.
+     */
+    private final int meetingId;
+    /**
+     * The scheduled date of the meeting.
+     */
+    private final Calendar meetingDate;
+    /**
+     * The set of contacts that will participate in the meeting.
+     */
+    private final Set<Contact> contactsOfMeeting;
     /**
      * Creates a new meeting.
      * @param id the unique id of a meeting
@@ -29,7 +37,9 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
      * meeting is negative.
      * @throws NullPointerException if the contacts or the date are null.
      */
-    public MeetingImpl(int id, Calendar date, Set<Contact> contacts) throws IllegalArgumentException, NullPointerException {
+    public MeetingImpl(final int id, final  Calendar date,
+                       final  Set<Contact> contacts)
+            throws IllegalArgumentException, NullPointerException {
         if (contacts == null || date == null) {
             throw new NullPointerException();
         }
@@ -40,9 +50,9 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
             throw new IllegalArgumentException("Wrong Id");
         }
 
-        this.id = id;
-        this.date = date;
-        this.contacts = contacts;
+        this.meetingId = id;
+        this.meetingDate = date;
+        this.contactsOfMeeting = contacts;
     }
     /**
      * Returns the id of the meeting.
@@ -51,7 +61,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
      */
     public int getId() {
 
-        return id;
+        return meetingId;
     }
 
     /**
@@ -61,7 +71,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
      */
     public Calendar getDate() {
 
-        return date;
+        return meetingDate;
     }
 
     /**
@@ -75,20 +85,25 @@ public class MeetingImpl implements Meeting, Comparable, Serializable{
      */
     public Set<Contact> getContacts() {
 
-        return contacts;
+        return contactsOfMeeting;
     }
 
     /**
-     * Compares this object with the specified object for order. Returns a negative integer, zero, or a positive integer
-     * as this object is less than, equal to, or greater than the specified object.
+     * Compares this object with the specified object for order.
+     * Returns a negative integer, zero, or a positive integer
+     * as this object is less than, equal to,
+     * or greater than the specified object.
      * @param o the object to be compared
-     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the
      * specified object.
      */
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(final Object o) {
         Meeting c = (Meeting) o;
-        if (id == c.getId() && date.compareTo(c.getDate()) == 0 && contacts.equals(c.getContacts()) == true) {
+        if (meetingId == c.getId() && meetingDate.compareTo(c.getDate())
+                == 0
+                && contactsOfMeeting.equals(c.getContacts()) == true) {
             return 0;
         } else {
             return -1;

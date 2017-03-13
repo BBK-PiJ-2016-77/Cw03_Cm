@@ -20,11 +20,11 @@ import java.util.TreeSet;
 public class MeetingImplTest {
     private int id;
     private Calendar calendar;
-    private Set<Contact> contacts = new TreeSet<Contact>();
+    private Set<Contact> contacts = new TreeSet<>();
     private Meeting meeting = null;
 
     @Before
-    public void beforeTest(){
+    public void beforeTest() {
         id = 12;
         Contact contact = new ContactImpl(id,"Maria");
         contacts.add(contact);
@@ -35,7 +35,7 @@ public class MeetingImplTest {
     public void meetingInitializationIdFailure() {
         try {
             new PastMeetingImpl(-1, calendar, contacts, "");
-        }catch (Exception e) {
+        } catch (Exception e) {
             assertEquals(e.getMessage(), "Wrong Id");
         }
     }
@@ -59,7 +59,7 @@ public class MeetingImplTest {
         }
     }
     @Test
-    public void getContactsTest(){
+    public void getContactsTest() {
         meeting = new PastMeetingImpl(id, calendar, contacts, "");
         assertThat(contacts, is(meeting.getContacts()));
     }

@@ -115,7 +115,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     *
     * @return the ID for the meeting
     * @throws IllegalArgumentException if the meeting is set for a time in the past,
-   * or if any contact is unknown / non-existent.
+    or if any contact is unknown / non-existent.
     *
     * @throws NullPointerException if the meeting or the date are null
    */
@@ -201,7 +201,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     * @param id the ID for the meeting
     *
     * @return the meeting with the requested ID, or null if
-    * there is none
+    there is none
    */
 
   private Meeting searchForMeeting(final int id) {
@@ -227,7 +227,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
    * @param contact one of the user’s contacts
    *
    * @return the list of future meeting(s)
-    * scheduled with this contact (maybe empty).
+   scheduled with this contact (maybe empty).
    * @throws IllegalArgumentException if the contact does not exist
    * @throws NullPointerException if the contact is null
    */
@@ -401,7 +401,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
    * @param text messages to be added about the meeting.
    * @return the ID for the meeting
    * @throws IllegalArgumentException if the list of contacts is
-   * empty, if any of the contacts does not exist, or if the date provided is in the future
+   empty, if any of the contacts does not exist, or if the date provided is in the future
    * @throws NullPointerException if any of the arguments is null
    */
 
@@ -539,7 +539,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
    * @param ids an arbitrary number of contact IDs
    * @return a set containing the contacts that correspond to the IDs.
    * @throws IllegalArgumentException if no IDs are provided or if
-   * any of the provided IDs does not correspond to a real contact
+   any of the provided IDs does not correspond to a real contact
    */
 
   public final Set<Contact> getContacts(final int... ids) throws

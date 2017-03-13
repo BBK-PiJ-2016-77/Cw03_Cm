@@ -18,7 +18,7 @@ public class TestRunner {
 
         Result result = JUnitCore.runClasses(ContactImplTest.class);
 
-        for(Failure failure : result.getFailures()){
+        for(Failure failure : result.getFailures()) {
 
             System.out.println(failure.toString());
         }
@@ -27,7 +27,7 @@ public class TestRunner {
         System.out.println();
 
         result = JUnitCore.runClasses(MeetingImplTest.class);
-        for(Failure failure : result.getFailures()){
+        for(Failure failure : result.getFailures()) {
 
             System.out.println(failure.toString());
         }
@@ -37,7 +37,7 @@ public class TestRunner {
 
         result = JUnitCore.runClasses(ContactManagerImplTest.class);
 
-        for(Failure failure : result.getFailures()){
+        for(Failure failure : result.getFailures()) {
 
             System.out.println(failure.toString());
             System.out.println();

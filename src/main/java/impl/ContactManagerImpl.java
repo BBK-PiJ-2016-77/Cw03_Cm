@@ -1,14 +1,17 @@
 package impl;
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
-
+import java.io.StringWriter;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -89,7 +92,10 @@ public class ContactManagerImpl implements ContactManager, Serializable {
       }
     } catch (IOException | SecurityException
             | NullPointerException | ClassNotFoundException e) {
-      logger.log(Level.SEVERE, "ContactManagerImpl_Constructor", e);
+      StringWriter stringWriter = new StringWriter();
+      PrintWriter printWriter = new PrintWriter(stringWriter);
+      e.printStackTrace(printWriter);
+      logger.logp(Level.SEVERE, this.getClass().getName(), "ContactManagerImpl_constr",stringWriter.toString());
     } finally {
       try {
         if (input != null) {
@@ -597,14 +603,13 @@ class Sequence implements  Serializable {
    /**
     * Starting value at 0.
     */
-   private int value = 0;
-   /**
-    * Providing a unique sequence.
-    *
-    * @return unique value for every object.
-    */
-
-   public int nextValue() {
-     return  ++value;
-   }
+  private int value = 0;
+  /**
+   * Providing a unique sequence.
+   *
+   * @return unique value for every object.
+   */
+  public int nextValue() {
+    return  ++value;
+  }
 }

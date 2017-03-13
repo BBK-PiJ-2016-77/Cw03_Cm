@@ -48,7 +48,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
       throw new IllegalArgumentException("No contacts are given");
     }
     if (id <= 0) {
-        throw new IllegalArgumentException("Wrong Id");
+      throw new IllegalArgumentException("Wrong Id");
     }
     this.meetingId = id;
     this.meetingDate = date;

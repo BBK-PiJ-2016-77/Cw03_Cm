@@ -1,14 +1,15 @@
 package impl;
 
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Set;
+
 import spec.Contact;
 import spec.PastMeeting;
 
-import java.util.Calendar;
-import java.util.Set;
-import java.io.Serializable;
+
 /**
  * A meeting that was held in the past.
- *
  * It includes your notes about what happened and what was agreed.
  */
 public class PastMeetingImpl extends MeetingImpl implements

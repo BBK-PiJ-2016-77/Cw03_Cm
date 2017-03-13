@@ -1,14 +1,14 @@
 package impl;
 
-
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Set;
 
 import spec.Contact;
 import spec.Meeting;
 
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Set;
+
 
 /**
  * A class to represent meetings.
@@ -33,10 +33,9 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * @param id the unique id of a meeting
    * @param date the date on which the meeting will take place
    * @param contacts a set of contacts that will participate in the meeting
-   * @throws IllegalArgumentException if the set is empty or if the id of the
-   * meeting is negative.
+   * @throws IllegalArgumentException if the set is empty or if the id of the meeting is negative.
    * @throws NullPointerException if the contacts or the date are null.
-   */
+    */
 
   public MeetingImpl(final int id, final  Calendar date,
                      final  Set<Contact> contacts) throws
@@ -74,7 +73,6 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
   }
   /**
    * Return the details of people that attended the meeting.
-   *
    * The list contains a minimum of one contact (if there were
    * just two people: the user and the contact) and may contain an
    * arbitrary number of them.
@@ -91,10 +89,9 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * as this object is less than, equal to,
    * or greater than the specified object.
    * @param o the object to be compared
-   * @return a negative integer, zero, or a positive integer as this object
-   * is less than, equal to, or greater than the
-   * specified object.
-   */
+   * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
+   or greater than the specified object
+    */
 
   @Override
   public final int compareTo(final Object o) {

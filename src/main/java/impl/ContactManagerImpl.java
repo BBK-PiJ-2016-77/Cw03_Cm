@@ -1,17 +1,16 @@
 package impl;
 
-
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -95,7 +94,8 @@ public class ContactManagerImpl implements ContactManager, Serializable {
       StringWriter stringWriter = new StringWriter();
       PrintWriter printWriter = new PrintWriter(stringWriter);
       e.printStackTrace(printWriter);
-      logger.logp(Level.SEVERE, this.getClass().getName(), "ContactManagerImpl_constructor",stringWriter.toString());
+      logger.logp(Level.SEVERE, this.getClass().getName(),
+              "ContactManagerImpl_constructor",stringWriter.toString());
     } finally {
       try {
         if (input != null) {
@@ -107,16 +107,17 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     }
   }
   /**
-   * Add a new meeting to be held in the future.
-   * An ID is returned when the meeting is put into the system. This
-   * ID must be positive and non-zero.
-   * @param contacts a set of contacts that will participate in the meeting
-   * @param date the date on which the meeting will take place
-   *
-   * @return the ID for the meeting
-   * @throws IllegalArgumentException if the meeting is set for a time
-   * in the past, of if any contact is unknown / non-existent.
-   * @throws NullPointerException if the meeting or the date are null
+    * Add a new meeting to be held in the future.
+    * An ID is returned when the meeting is put into the system. This
+    * ID must be positive and non-zero.
+    * @param contacts a set of contacts that will participate in the meeting
+    * @param date the date on which the meeting will take place
+    *
+    * @return the ID for the meeting
+    * @throws IllegalArgumentException if the meeting is set for a time in the past,
+   * or if any contact is unknown / non-existent.
+    *
+    * @throws NullPointerException if the meeting or the date are null
    */
 
   public final int addFutureMeeting(final Set<Contact> contacts,
@@ -162,14 +163,14 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     throw new IllegalStateException(("This is a future Meeting"));
   }
   /**
-   * Returns the FUTURE meeting with the requested ID,
-   * or null if there is none.
-   * @param id the ID for the meeting
-   *
-   * @return the meeting with the requested ID, or null if it there is none.
-   * @throws IllegalStateException if there is a meeting with that ID
-   * happening in the past
+    * Returns the FUTURE meeting with the requested ID,
+    * or null if there is none.
+    * @param id the ID for the meeting
+    *
+    * @return the meeting with the requested ID, or null if it there is none.
+    * @throws IllegalStateException if there is a meeting with that ID happening in the past
    */
+
   public final FutureMeeting getFutureMeeting(final int id) throws IllegalStateException {
     Meeting meeting = searchForMeeting(id);
     if (meeting == null) {
@@ -196,11 +197,11 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     return meeting;
   }
   /**
-   * A serial search algorithm for meetings based on a given id.
-   * @param id the ID for the meeting
-   *
-   * @return the meeting with the requested ID, or null if
-   * there is none
+    * A serial search algorithm for meetings based on a given id.
+    * @param id the ID for the meeting
+    *
+    * @return the meeting with the requested ID, or null if
+    * there is none
    */
 
   private Meeting searchForMeeting(final int id) {
@@ -226,7 +227,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
    * @param contact one of the user’s contacts
    *
    * @return the list of future meeting(s)
-   * scheduled with this contact (maybe empty).
+    * scheduled with this contact (maybe empty).
    * @throws IllegalArgumentException if the contact does not exist
    * @throws NullPointerException if the contact is null
    */
@@ -540,6 +541,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
    * @throws IllegalArgumentException if no IDs are provided or if
    * any of the provided IDs does not correspond to a real contact
    */
+
   public final Set<Contact> getContacts(final int... ids) throws
           IllegalArgumentException {
     if (ids.length == 0) {
@@ -609,15 +611,16 @@ public class ContactManagerImpl implements ContactManager, Serializable {
  */
 
 class Sequence implements  Serializable {
-   /**
-    * Starting value at 0.
-    */
+  /**
+   * Starting value at 0.
+   */
   private int value = 0;
   /**
    * Providing a unique sequence.
    *
    * @return unique value for every object.
    */
+
   public int nextValue() {
     return  ++value;
   }

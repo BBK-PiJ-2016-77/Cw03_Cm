@@ -49,7 +49,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
   }
 
   /**
-   *
+   *  The second constructor of contact.
    * @param id the unique id of the contact
    * @param name the name of the contact
    * @throws IllegalArgumentException if the id of the contact is negative
@@ -96,15 +96,18 @@ public class ContactImpl implements Contact, Comparable, Serializable {
   public final void addNotes(final String note) {
     contactNotes = note;
   }
+
+
+
   /** Compares this object with the specified object for order.
-   * Returns a negative integer, zero, or
-   * a positive integer as this object is less than, equal to,
-   * or greater than the specified object.
-   * @param o the object to be compared
-   *
-   * @return a negative integer, zero, or a positive integer
-   * as this object is less than, equal to, or greater than the specified object.
-   */
+    * Returns a negative integer, zero, or
+    * a positive integer as this object is less than, equal to,
+    * or greater than the specified object.
+    * @param o the object to be compared
+    *
+    * @return a negative integer, zero, or a positive integer as this object is less than,equal to,
+    * or greater than the specified object
+    */
 
   @Override
   public final int compareTo(final Object o) {

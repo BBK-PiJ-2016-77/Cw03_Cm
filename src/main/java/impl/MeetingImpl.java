@@ -18,16 +18,16 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
   /**
    * The ID of the meeting.
    */
-  private final int meetingId;
+  private int meetingId;
   /**
    * The scheduled date of the meeting.
    */
-  private final Calendar meetingDate;
+  private Calendar meetingDate;
   /**
    * The set of contacts that will participate in the meeting.
    */
 
-  private final Set<Contact> contactsOfMeeting;
+  private Set<Contact> contactsOfMeeting;
   /**
    * Creates a new meeting.
    * @param id the unique id of a meeting
@@ -37,8 +37,8 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * @throws NullPointerException if the contacts or the date are null.
     */
 
-  public MeetingImpl(final int id, final  Calendar date,
-                     final  Set<Contact> contacts) throws
+  public MeetingImpl(int id, Calendar date,
+                     Set<Contact> contacts) throws
           IllegalArgumentException, NullPointerException {
     if (contacts == null || date == null) {
       throw new NullPointerException();
@@ -59,7 +59,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * @return the id of the meeting.
    */
 
-  public final int getId() {
+  public int getId() {
     return meetingId;
   }
   /**
@@ -68,7 +68,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * @return the date of the meeting.
    */
 
-  public final Calendar getDate() {
+  public Calendar getDate() {
     return meetingDate;
   }
   /**
@@ -80,7 +80,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    * @return the details of people that attended the meeting.
    */
 
-  public final Set<Contact> getContacts() {
+  public Set<Contact> getContacts() {
     return contactsOfMeeting;
   }
   /**
@@ -94,7 +94,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
     */
 
   @Override
-  public final int compareTo(final Object o) {
+  public int compareTo(Object o) {
     Meeting c = (Meeting) o;
     if (meetingId == c.getId() && meetingDate.compareTo(c.getDate()) == 0
                 && contactsOfMeeting.equals(c.getContacts())) {

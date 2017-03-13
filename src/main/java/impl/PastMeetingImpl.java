@@ -29,8 +29,8 @@ public class PastMeetingImpl extends MeetingImpl implements
    passed as parameters is null
    */
 
-  public PastMeetingImpl(final int id, final Calendar date,
-                         final Set<Contact> contacts, final String notes) throws
+  public PastMeetingImpl(int id, Calendar date,
+                         Set<Contact> contacts, String notes) throws
           IllegalArgumentException, NullPointerException {
       super(id, date, contacts);
     if (notes == null) {
@@ -46,7 +46,7 @@ public class PastMeetingImpl extends MeetingImpl implements
    * @return the notes from the meeting.
    */
 
-  public final String getNotes() {
+  public String getNotes() {
     return meetingNotes;
   }
 }

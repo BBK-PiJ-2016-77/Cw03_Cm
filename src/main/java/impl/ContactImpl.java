@@ -55,7 +55,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
    * @throws IllegalArgumentException if the id of the contact is negative
    * @throws NullPointerException if the name of the contact is null
    */
-  public ContactImpl(final int id, final String name) throws
+  public ContactImpl(int id, String name) throws
           IllegalArgumentException, NullPointerException {
     this(id, name, "");
   }
@@ -65,7 +65,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
    * @return the ID of the contact.
    */
 
-  public final int getId() {
+  public int getId() {
     return  contactId;
   }
   /**
@@ -73,7 +73,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
    * @return the name of the contact.
    */
 
-  public final String getName() {
+  public String getName() {
     return  contactName;
   }
   /**
@@ -84,7 +84,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
    * @return a string with notes about the contact, maybe empty.
    */
 
-  public final String getNotes() {
+  public String getNotes() {
     return contactNotes;
   }
   /**
@@ -93,7 +93,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
    * @param note the notes to be added
    */
 
-  public final void addNotes(final String note) {
+  public void addNotes(String note) {
     contactNotes = note;
   }
 
@@ -110,7 +110,7 @@ public class ContactImpl implements Contact, Comparable, Serializable {
     */
 
   @Override
-  public final int compareTo(final Object o) {
+  public int compareTo(Object o) {
     Contact c = (Contact) o;
     if (contactId == c.getId() && contactName.compareTo(c.getName()) == 0
             && contactNotes.compareTo(c.getNotes()) == 0) {

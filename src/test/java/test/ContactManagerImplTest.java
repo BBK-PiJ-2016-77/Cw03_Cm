@@ -9,6 +9,9 @@ import org.junit.Test;
 import spec.*;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.NoSuchFileException;
 import java.util.*;
 
 public class ContactManagerImplTest {
@@ -22,7 +25,11 @@ public class ContactManagerImplTest {
             fileName = fileName.replace(".", "");
             File file = new File(fileName);
             if(file.exists() && !file.isDirectory()) {
-                file.delete();
+
+                  boolean found =  file.delete();
+                  if(!found){
+                      System.out.println("delete failed");
+                  }
             }
         }catch (NullPointerException | SecurityException e) {
             e.printStackTrace();
@@ -378,7 +385,7 @@ public class ContactManagerImplTest {
                     contactManager.getContacts("Maria");
             int id = contactManager.addNewPastMeeting(contactManagerSet,
                     Calendar.getInstance(),"meeting notes");
-            Meeting meeting = contactManager.getFutureMeeting(id);
+            contactManager.getFutureMeeting(id);
             fail();
         } catch (NullPointerException | IllegalArgumentException e) {
             //addNewPastMeeting exception
@@ -402,11 +409,7 @@ public class ContactManagerImplTest {
     }
     @Test
     public void getMeetingTestForNullSuccess() {
-
-        Set<Contact> contactManagerSet =
-                contactManager.getContacts("Maria");
-        int id = contactManager.addNewPastMeeting(contactManagerSet,
-                Calendar.getInstance(),"meeting notes");
+        //Giving an Id that we are not using as arguments should return null
         Meeting meeting = contactManager.getMeeting(100);
         assertNull(meeting);
 
@@ -569,7 +572,7 @@ public class ContactManagerImplTest {
             boolean found = false;
             int i = 0;
 
-            while(!found) {
+            while(!found && i < futureMeetings2.length) {
                 if(futureMeetings2[i]!= futureMeetings[i]) {
                     found=true;
                 } else {
@@ -578,6 +581,7 @@ public class ContactManagerImplTest {
             }
 
             if (!found) {
+                System.out.println("edw");
                 fail();
             }
         } catch (NullPointerException e) {
@@ -630,8 +634,7 @@ public class ContactManagerImplTest {
     @Test
     public void getPastMeetingListForWrongContactTestFailure() {
         Contact contact = new ContactImpl(1, "Katerina");
-        Set<Contact> contactManagerSet = new TreeSet<>();
-        contactManagerSet.add(contact);
+
         try {
             List<PastMeeting> meetingList = contactManager
                     .getPastMeetingListFor(contact);

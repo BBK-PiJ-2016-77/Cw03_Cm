@@ -95,7 +95,7 @@ public class ContactManagerImpl implements ContactManager, Serializable {
       StringWriter stringWriter = new StringWriter();
       PrintWriter printWriter = new PrintWriter(stringWriter);
       e.printStackTrace(printWriter);
-      logger.logp(Level.SEVERE, this.getClass().getName(), "ContactManagerImpl_constr",stringWriter.toString());
+      logger.logp(Level.SEVERE, this.getClass().getName(), "ContactManagerImpl_constructor",stringWriter.toString());
     } finally {
       try {
         if (input != null) {
@@ -580,16 +580,25 @@ public class ContactManagerImpl implements ContactManager, Serializable {
     } catch (FileNotFoundException
             | SecurityException
             | NullPointerException  e) {
-      logger.log(Level.SEVERE, "flush", e);
+      StringWriter stringWriter = new StringWriter();
+      PrintWriter printWriter = new PrintWriter(stringWriter);
+      e.printStackTrace(printWriter);
+      logger.logp(Level.SEVERE, this.getClass().getName(), "flush",stringWriter.toString());
     } catch (IOException e) {
-      logger.log(Level.SEVERE, "flush", e);
+      StringWriter stringWriter = new StringWriter();
+      PrintWriter printWriter = new PrintWriter(stringWriter);
+      e.printStackTrace(printWriter);
+      logger.logp(Level.SEVERE, this.getClass().getName(), "flush",stringWriter.toString());
     } finally {
       try {
         if (output != null) {
           output.close();
         }
       } catch (IOException e) {
-        logger.log(Level.SEVERE, "flush", e);
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        e.printStackTrace(printWriter);
+        logger.logp(Level.SEVERE, this.getClass().getName(), "flush",stringWriter.toString());
       }
     }
   }

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Set;
 
 import spec.Contact;
+import spec.Meeting;
 import spec.PastMeeting;
 
 
@@ -49,4 +50,21 @@ public class PastMeetingImpl extends MeetingImpl implements
   public String getNotes() {
     return meetingNotes;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    boolean result = super.equals(o);
+    if(!result){
+      return false;
+    }
+    PastMeeting c = (PastMeeting) o;
+    return (meetingNotes.equals(c.getNotes()));
+  }
+  @Override
+  public int hashCode() {
+    int hash = super.hashCode();
+    hash+= meetingNotes.hashCode();
+    return hash;
+  }
+
 }

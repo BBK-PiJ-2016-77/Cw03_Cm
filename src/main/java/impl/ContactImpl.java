@@ -119,5 +119,12 @@ public class ContactImpl implements Contact, Comparable, Serializable {
       return -1;
     }
   }
+
+  @Override
+  public int hashCode() {
+    int hash = contactId;
+    hash+= contactName.hashCode() + contactNotes.hashCode();
+    return hash;
+  }
 }
 

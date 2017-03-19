@@ -1,8 +1,8 @@
 package test;
 
-import impl.ContactImpl;
-
 import static org.junit.Assert.assertEquals;
+
+import impl.ContactImpl;
 
 import org.junit.After;
 import org.junit.Before;

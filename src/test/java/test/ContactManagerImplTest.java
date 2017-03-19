@@ -2,17 +2,20 @@ package test;
 
 import static org.junit.Assert.*;
 
-
 import impl.ContactImpl;
 import impl.ContactManagerImpl;
+
+import java.io.File;
+import java.util.*;
+
 import org.junit.After;
 import org.junit.Before;
 
 import org.junit.Test;
+
 import spec.*;
 
-import java.io.File;
-import java.util.*;
+
 
 /**
  * Tests for Contact Manager.
@@ -182,7 +185,7 @@ public class ContactManagerImplTest {
     try {
       Set<Contact> contactManagerSet = contactManager
               .getContacts((String)null);
-        fail();
+      fail();
     } catch (NullPointerException e) {
 
     }

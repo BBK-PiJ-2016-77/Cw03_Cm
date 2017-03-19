@@ -483,7 +483,6 @@ public class ContactManagerImpl implements ContactManager, Serializable {
   }
   /**
    * Create a new contact with the specified name and notes.
-   *
    * @param name the name of the contact.
    * @param notes notes to be added about the contact.
    *

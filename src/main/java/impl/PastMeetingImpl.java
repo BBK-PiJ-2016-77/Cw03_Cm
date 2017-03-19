@@ -51,19 +51,30 @@ public class PastMeetingImpl extends MeetingImpl implements
     return meetingNotes;
   }
 
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   * @param o - the reference object with  which to compare.
+   * @return true if this object is the same as the obj argument, false otherwise.
+   */
   @Override
   public boolean equals(Object o) {
     boolean result = super.equals(o);
-    if(!result){
+    if (!result) {
       return false;
     }
     PastMeeting c = (PastMeeting) o;
     return (meetingNotes.equals(c.getNotes()));
   }
+
+  /**
+   * A hash code value for the object.
+   *
+   * @return a hash code value for this object.
+   */
   @Override
   public int hashCode() {
     int hash = super.hashCode();
-    hash+= meetingNotes.hashCode();
+    hash += meetingNotes.hashCode();
     return hash;
   }
 

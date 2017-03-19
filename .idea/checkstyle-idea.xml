@@ -3,9 +3,10 @@
   <component name="CheckStyle-IDEA">
     <option name="configuration">
       <map>
+        <entry key="active-configuration" value="LOCAL_FILE:/Users/vasileiosdavios/Documents/BbkFiles/Modules/Pij/courseworks/PiJ-2016-17/coursework/cw-cm/config/checkstyle/checkstyle.xml:Google's checkstyle.xml" />
         <entry key="checkstyle-version" value="7.6" />
-        <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
-        <entry key="location-1" value="LOCAL_FILE:/Users/vasileiosdavios/Documents/BbkFiles/Modules/Pij/courseworks/PiJ-2016-17/coursework/cw-cm/config/checkstyle/checkstyle.xml:Google's checkstyle.xml" />
+        <entry key="location-0" value="LOCAL_FILE:/Users/vasileiosdavios/Documents/BbkFiles/Modules/Pij/courseworks/PiJ-2016-17/coursework/cw-cm/config/checkstyle/checkstyle.xml:Google's checkstyle.xml" />
+        <entry key="location-1" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
         <entry key="scan-before-checkin" value="false" />
         <entry key="scanscope" value="JavaOnly" />
         <entry key="suppress-errors" value="false" />

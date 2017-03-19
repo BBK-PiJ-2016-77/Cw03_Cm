@@ -97,7 +97,7 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
    *
    * @param o the object to be compared
    * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
-   * or greater than the specified object
+   or greater than the specified object
    */
 
   @Override
@@ -108,12 +108,17 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
 
   }
 
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   * @param o - the reference object with  which to compare.
+   * @return true if this object is the same as the obj argument, false otherwise.
+   */
   @Override
   public boolean equals(Object o) {
-    if(o == null) {
+    if (o == null) {
       return false;
     }
-    if(!(o instanceof Meeting)) {
+    if (!(o instanceof Meeting)) {
       return false;
     }
     Meeting c = (Meeting) o;
@@ -121,12 +126,17 @@ public class MeetingImpl implements Meeting, Comparable, Serializable {
             && contactsOfMeeting.equals(c.getContacts()));
   }
 
+  /**
+   * A hash code value for the object.
+   *
+   * @return a hash code value for this object.
+   */
   @Override
   public int hashCode() {
     int hash = meetingId;
-    hash+= meetingDate.hashCode();
-    for(Contact contact : contactsOfMeeting){
-      hash+= contact.hashCode();
+    hash += meetingDate.hashCode();
+    for (Contact contact : contactsOfMeeting) {
+      hash += contact.hashCode();
     }
     return hash;
   }

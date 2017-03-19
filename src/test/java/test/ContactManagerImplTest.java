@@ -891,6 +891,7 @@ public class ContactManagerImplTest {
   /**
    * Asserting that flush method works correctly.
    */
+
   @Test
   public void flushTestSuccess() {
     Set<Contact> contacts = contactManager.getContacts("Maria");
@@ -908,7 +909,9 @@ public class ContactManagerImplTest {
     assertEquals(contact.getName(), "Maria");
     assertEquals(meeting.getId(), 1);
   }
-
+  /**
+   * Clear
+   */
   @After
   public void afterTest() {
     contactManager = null;

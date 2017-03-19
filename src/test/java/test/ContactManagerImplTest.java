@@ -690,7 +690,7 @@ public class ContactManagerImplTest {
   }
 
   /**
-   * Asseting that the list returned from getMeetingListOn is sorted by date.
+   * Asserting that the list returned from getMeetingListOn is sorted by date.
    */
   @Test
   public void getMeetingListOnTestFailure() {

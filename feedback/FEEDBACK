@@ -1,1 +1,24 @@
+Please look at the general comments to see if any apply.
 
+Good set of tests.
+
+Good documentation.
+
+Consider using the ?: operator rather than code like:
+
+@Override
+  public int compareTo(Object o) {
+    Contact c = (Contact) o;
+    if (contactId == c.getId() && contactName.compareTo(c.getName()) == 0
+            && contactNotes.compareTo(c.getNotes()) == 0) {
+      return 0;
+    } else {
+      return -1;
+    }
+  }
+
+Going forward consider using Java 8 constructs.
+
+An excellent piece of work - well done. 
+
+Distinction Grade: 90%
